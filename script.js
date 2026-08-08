@@ -144,9 +144,132 @@ window.addEventListener('resize', debounce(moveIndicator, 150));
 const toTop = document.getElementById('toTop');
 function updateToTop() {
   toTop.classList.toggle('show', window.scrollY > 600);
+  if (!toTop.classList.contains('show')) toTop.style.transform = '';
 }
 updateToTop();
 window.addEventListener('scroll', debounce(updateToTop, 100), { passive: true });
 toTop.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
 });
+
+// --- scrolling typewriter for the hero subtitle ---
+const typedEl = document.getElementById('typed');
+const typedPhrases = [
+  'BSIT student passionate about technology.',
+  'Frontend developer and Figma designer.',
+  'Vibe coder who builds projects with AI.',
+  'Interested in web development and computer hardware.',
+  'Enjoys PC building and tech exploration.',
+  'Works well in teams and independently.',
+  'Always learning and improving new skills.',
+  'Focused on creating clean and user-friendly designs.',
+];
+if (typedEl) {
+  if (reduceMotion) {
+    typedEl.textContent = typedPhrases[0];
+  } else {
+    let tp = 0, ci = 0, deleting = false;
+    setTimeout(function typeLoop() {
+      const phrase = typedPhrases[tp];
+      if (deleting) {
+        ci--;
+        typedEl.textContent = phrase.slice(0, ci);
+        if (ci === 0) {
+          deleting = false;
+          tp = (tp + 1) % typedPhrases.length;
+        }
+        setTimeout(typeLoop, ci === 0 ? 500 : 38);
+      } else {
+        ci++;
+        typedEl.textContent = phrase.slice(0, ci);
+        deleting = ci === phrase.length;
+        setTimeout(typeLoop, deleting ? 2100 : 75 + Math.random() * 45);
+      }
+    }, 1200);
+  }
+}
+
+// --- wavy liquid name + star sparkles ---
+const nameEl = document.querySelector('.name-grad');
+if (nameEl && !reduceMotion) {
+  const chars = [...nameEl.textContent];
+  const starSpots = [3, 8, 14, 20, 26, 31];
+  nameEl.classList.add('is-wavy');
+  nameEl.textContent = '';
+  chars.forEach((ch, i) => {
+    const s = document.createElement('span');
+    s.className = ch === ' ' ? 'wavy-letter wavy-space' : 'wavy-letter';
+    s.textContent = ch;
+    s.style.setProperty('--i', i);
+    if (ch !== ' ' && starSpots.includes(i)) {
+      s.style.setProperty('--sc', "'✦'");
+      s.style.setProperty('--sd', Math.round(300 + Math.random() * 2400));
+    }
+    nameEl.appendChild(s);
+  });
+
+  const h1 = nameEl.closest('h1');
+  if (h1) {
+    h1.style.position = 'relative';
+    const sparkCount = 4;
+    for (let n = 0; n < sparkCount; n++) {
+      const star = document.createElement('span');
+      star.className = 'h1-spark';
+      star.textContent = '✦';
+      star.style.left = `${(8 + Math.random() * 84).toFixed(1)}%`;
+      star.style.top = `${(Math.random() * 110).toFixed(1)}%`;
+      star.style.setProperty('--sd', Math.round(Math.random() * 5000));
+      h1.appendChild(star);
+    }
+  }
+}
+
+// --- scroll progress (top bar + to-top ring) ---
+const scrollProgress = document.getElementById('scrollProgress');
+let progRaf = null;
+function updateProgress() {
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  const p = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+  if (scrollProgress) scrollProgress.style.setProperty('--p', p);
+  if (toTop) toTop.style.setProperty('--ring', p * 100);
+}
+function requestProgress() {
+  if (progRaf) return;
+  progRaf = requestAnimationFrame(() => { updateProgress(); progRaf = null; });
+}
+window.addEventListener('scroll', requestProgress, { passive: true });
+window.addEventListener('resize', debounce(requestProgress, 150));
+requestProgress();
+
+// --- cursor spotlight that glides across the page ---
+const spotlight = document.getElementById('spotlight');
+if (spotlight && finePointer && !reduceMotion) {
+  let sx = window.innerWidth / 2, sy = window.innerHeight * 0.3, rX = sx, rY = sy, sRaf = null;
+  window.addEventListener('pointermove', (e) => {
+    rX = e.clientX;
+    rY = e.clientY;
+    if (!sRaf) {
+      sRaf = requestAnimationFrame(() => {
+        sx += (rX - sx) * 0.12;
+        sy += (rY - sy) * 0.12;
+        spotlight.style.setProperty('--sx', `${sx.toFixed(1)}px`);
+        spotlight.style.setProperty('--sy', `${sy.toFixed(1)}px`);
+        sRaf = null;
+      });
+    }
+  });
+}
+
+// --- magnetic back-to-top ---
+if (finePointer && !reduceMotion) {
+  toTop.addEventListener('pointermove', (e) => {
+    if (!toTop.classList.contains('show')) return;
+    const r = toTop.getBoundingClientRect();
+    const dx = (e.clientX - (r.left + r.width / 2)) * 0.3;
+    const dy = (e.clientY - (r.top + r.height / 2)) * 0.3;
+    toTop.style.transform = `translate(${dx.toFixed(1)}px, ${dy.toFixed(1)}px)`;
+  });
+  toTop.addEventListener('pointerleave', () => {
+    toTop.style.transform = '';
+  });
+}
