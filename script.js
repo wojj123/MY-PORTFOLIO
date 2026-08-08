@@ -14,18 +14,49 @@ const tabLinks = document.querySelectorAll('.tab-link');
 const tabsEl = document.querySelector('.tabs');
 const indicator = document.querySelector('.tab-indicator');
 
-function moveIndicator() {
-  if (!tabsEl || !indicator) return;
+// --- liquid spring-driven tab indicator (vertical rail on desktop, bar on mobile) ---
+const ind = { x: 0, y: 0, w: 0, h: 0 };
+let indRaf = null;
+let indFirst = true;
+
+function stepIndicator() {
   const active = tabsEl.querySelector('.tab-link.active');
-  if (!active) return;
-  indicator.style.width = `${active.offsetWidth}px`;
-  indicator.style.transform = `translateX(${active.offsetLeft}px)`;
+  if (!active) { indRaf = null; return; }
+  const tx = active.offsetLeft;
+  const ty = active.offsetTop;
+  const tw = active.offsetWidth;
+  const th = active.offsetHeight;
+  const k = reduceMotion || indFirst ? 1 : 0.22;
+  indFirst = false;
+  ind.x += (tx - ind.x) * k;
+  ind.y += (ty - ind.y) * k;
+  ind.w += (tw - ind.w) * k;
+  ind.h += (th - ind.h) * k;
+  const settled = Math.abs(tx - ind.x) < 0.05 && Math.abs(ty - ind.y) < 0.05 &&
+    Math.abs(tw - ind.w) < 0.05 && Math.abs(th - ind.h) < 0.05;
+  if (settled) { ind.x = tx; ind.y = ty; ind.w = tw; ind.h = th; }
+  indicator.style.width = `${ind.w.toFixed(2)}px`;
+  indicator.style.height = `${ind.h.toFixed(2)}px`;
+  indicator.style.transform = `translate(${ind.x.toFixed(2)}px, ${ind.y.toFixed(2)}px)`;
+  indRaf = settled ? null : requestAnimationFrame(stepIndicator);
+}
+
+function moveIndicator() {
+  if (!tabsEl || !indicator || indRaf) return;
+  stepIndicator();
 }
 
 tabLinks.forEach((link) => {
   link.addEventListener('click', () => {
     tabLinks.forEach((l) => l.classList.toggle('active', l === link));
     moveIndicator();
+    if (tabsEl.scrollWidth > tabsEl.clientWidth) {
+      link.scrollIntoView({
+        inline: 'center',
+        block: 'nearest',
+        behavior: reduceMotion ? 'auto' : 'smooth',
+      });
+    }
   });
 });
 
