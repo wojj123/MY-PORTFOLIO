@@ -3,26 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#05060a">
 <title>Lolek portfolio</title>
 <meta name="description" content="Lolek — computer science student and programmer.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <a class="skip-link" href="#main">Skip to content</a>
-<div class="gutter" id="gutter" aria-hidden="true"></div>
+
+<div class="orbs" aria-hidden="true">
+  <span class="orb orb-a"></span>
+  <span class="orb orb-b"></span>
+  <span class="orb orb-c"></span>
+</div>
 
 <nav class="tabbar" aria-label="Section navigation">
   <div class="tabbar-inner">
     <span class="tab-brand mono">lolek.dev</span>
     <div class="tabs">
-      <a href="#profile" class="tab-link active">01 profile</a>
-      <a href="#work" class="tab-link">02 work</a>
-      <a href="#stack" class="tab-link">03 stack</a>
-      <a href="#contact" class="tab-link">04 contact</a>
+      <span class="tab-indicator" aria-hidden="true"></span>
+      <a href="#profile" class="tab-link active">profile</a>
+      <a href="#projects" class="tab-link">projects</a>
+      <a href="#stack" class="tab-link">stack</a>
+      <a href="#contact" class="tab-link">contact</a>
     </div>
   </div>
 </nav>
@@ -30,22 +38,27 @@
 <main id="main">
 
   <section id="profile" class="section hero">
-    <p class="eyebrow mono">// profile</p>
-    <h1>Cristian Wojtyla M. Delos Angeles<span class="cursor" aria-hidden="true"></span></h1>
+    <p class="eyebrow mono">profile</p>
+    <h1><span class="name-grad">Cristian Wojtyla M. Delos Angeles</span><span class="cursor" aria-hidden="true"></span></h1>
     <p class="hero-sub mono">IT student — builds mostly in C &amp; Python</p>
     <p class="hero-status mono"><span class="status-dot"></span>currently: prepping for Integrative programming II</p>
+    <div class="hero-chips mono">
+      <span>BSIT · 3rd year</span>
+      <span>Tinambac CS / Canaman CS</span>
+      <span>frontend in progress</span>
+    </div>
     <p class="lede">Hi, I'm Lolek — a 3rd year IT student currently teaching myself frontend development. I'm still early in this side of things, so I'm keeping it hands-on: building real pages instead of just watching tutorials, and learning HTML, CSS, and JavaScript by actually running into the problems they cause. Frontend is the newer muscle I'm training. I don't have it all figured out yet, and that's kind of the point: every layout that breaks and every bit of CSS that doesn't behave is teaching me something I'll actually remember. </p>
   </section>
 
-  <section id="proj" class="section">
-    <p class="eyebrow mono">// selected Projects</p>
+  <section id="projects" class="section">
+    <p class="eyebrow mono">selected projects</p>
     <h2>Projects</h2>
 
     <div class="work-list">
       <article class="work-row">
         <div class="work-index mono">01</div>
-        <div class="proj-body">
-          <div class="proj-head">
+        <div class="work-body">
+          <div class="work-head">
             <h3>Muay Type</h3>
             <div class="work-tags mono">C · TCP sockets · duo project</div>
           </div>
@@ -67,7 +80,7 @@
   </section>
 
   <section id="stack" class="section">
-    <p class="eyebrow mono">// stack</p>
+    <p class="eyebrow mono">stack</p>
     <h2>Stack</h2>
     <ul class="stack-list mono">
       <li>C</li>
@@ -81,7 +94,7 @@
   </section>
 
   <section id="contact" class="section">
-    <p class="eyebrow mono">// contact</p>
+    <p class="eyebrow mono">contact</p>
     <h2>Get in touch</h2>
     <ul class="contact-list">
       <li><span class="mono">email</span><a href="mailto:lolekdelosangeles2005@gmail.com">lolekdelosangeles2005@gmail.com</a></li>
@@ -95,6 +108,8 @@
   <span>lolek — updated 2026</span>
   <span>EOF</span>
 </footer>
+
+<button class="to-top mono" id="toTop" aria-label="Back to top">↑</button>
 
 <script src="script.js"></script>
 </body>
