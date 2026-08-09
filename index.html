@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="dark">
-<meta name="theme-color" content="#07191E">
+<meta name="theme-color" content="#000000">
 <title>Lolek portfolio</title>
 <meta name="description" content="Lolek — computer science student and programmer.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,6 +24,8 @@
   <span class="orb orb-b"></span>
   <span class="orb orb-c"></span>
 </div>
+
+<div id="waves" aria-hidden="true"></div>
 
 <nav class="tabbar" aria-label="Section navigation">
   <div class="tabbar-inner">
@@ -50,6 +52,7 @@
     </div>
     <p class="lede">Hi, I'm Lolek — a 3rd year IT student currently teaching myself frontend development. I enjoy creating user-friendly applications and learning new technologies. My interests include frontend development, UI/UX design, and database management. Through academic projects and personal learning, I continue to improve my programming and problem-solving skills while preparing for a career in the technology industry.</p>
     <a class="hero-cta mono" href="#contact">get in touch</a>
+    <div id="lanyard-stage" aria-hidden="true"></div>
   </section>
 
   <section id="projects" class="section">
@@ -94,24 +97,46 @@
   <section id="stack" class="section">
     <p class="eyebrow mono">stack</p>
     <h2>TechStacks</h2>
-    <p class="stack-hint mono">click any stack to preview it</p>
-    <ul class="stack-list mono">
-      <li><button class="stack-pill" type="button" data-stack="c">C</button></li>
-      <li><button class="stack-pill" type="button" data-stack="python">Python</button></li>
-      <li><button class="stack-pill" type="button" data-stack="flask">Flask</button></li>
-      <li><button class="stack-pill" type="button" data-stack="sql">SQL</button></li>
-      <li><button class="stack-pill" type="button" data-stack="git">Git</button></li>
-      <li><button class="stack-pill" type="button" data-stack="cpp">C++</button></li>
-      <li><button class="stack-pill" type="button" data-stack="java">Java</button></li>
-    </ul>
+    <p class="stack-hint mono">hover a stack to preview the gallery — click for its details</p>
+    <div class="stack-wrap">
+      <ul class="stack-list mono">
+        <li><button class="stack-pill" type="button" data-stack="c">C</button></li>
+        <li><button class="stack-pill" type="button" data-stack="python">Python</button></li>
+        <li><button class="stack-pill" type="button" data-stack="flask">Flask</button></li>
+        <li><button class="stack-pill" type="button" data-stack="sql">SQL</button></li>
+        <li><button class="stack-pill" type="button" data-stack="git">Git</button></li>
+        <li><button class="stack-pill" type="button" data-stack="cpp">C++</button></li>
+        <li><button class="stack-pill" type="button" data-stack="java">Java</button></li>
+      </ul>
+      <div class="stack-hover-preview" id="stackPreviewPopover" hidden>
+        <div class="accordion-gallery" id="accordionGallery"></div>
+      </div>
+    </div>
   </section>
 
   <section id="contact" class="section">
     <p class="eyebrow mono">contact</p>
     <h2>Get in touch</h2>
     <ul class="contact-list">
-      <li><span class="mono">email</span><a href="mailto:lolekdelosangeles2005@gmail.com">lolekdelosangeles2005@gmail.com</a></li>
-      <li><span class="mono">github</span><a href="https://github.com/wojj123" target="_blank" rel="noopener">github.com/wojj123</a></li>
+      <li>
+        <span class="mono contact-label">
+          <svg class="contact-ico" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="4" width="20" height="16" rx="3"/>
+            <path d="M3 6l8.2 6.2a1.6 1.6 0 0 0 1.6 0L21 6"/>
+          </svg>
+          email
+        </span>
+        <a href="mailto:lolekdelosangeles2005@gmail.com">lolekdelosangeles2005@gmail.com</a>
+      </li>
+      <li>
+        <span class="mono contact-label">
+          <svg class="contact-ico" viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true">
+            <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.75 2.69 1.25 3.34.95.1-.74.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.77 1.05.77 2.12 0 1.53-.01 2.76-.01 3.14 0 .31.21.68.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/>
+          </svg>
+          github
+        </span>
+        <a href="https://github.com/wojj123" target="_blank" rel="noopener">github.com/wojj123</a>
+      </li>
     </ul>
   </section>
 
@@ -160,6 +185,263 @@
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="accordion-gallery.js"></script>
+<script src="gradient-waves.js"></script>
 <script src="script.js"></script>
+<div id="lens-stage" aria-hidden="true"></div>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://esm.sh/three@0.170.0",
+    "three/addons/": "https://unpkg.com/three@0.170.0/examples/jsm/",
+    "react": "https://esm.sh/react@18.3.1",
+    "react-dom": "https://esm.sh/react-dom@18.3.1",
+    "react-dom/client": "https://esm.sh/react-dom@18.3.1/client",
+    "@react-three/fiber": "https://esm.sh/@react-three/fiber@8.17.10?deps=react@18.3.1,three@0.170.0",
+    "@react-three/drei": "https://esm.sh/@react-three/drei@9.114.3?deps=react@18.3.1,three@0.170.0",
+    "@react-three/rapier": "https://esm.sh/@react-three/rapier@1.5.0?deps=react@18.3.1,three@0.170.0",
+    "meshline": "https://esm.sh/meshline@3.3.0?deps=three@0.170.0",
+    "@dimforge/rapier3d-compat": "https://esm.sh/@dimforge/rapier3d-compat@0.14.0"
+  }
+}
+</script>
+<script type="module" src="fluid-lens.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7/babel.min.js"></script>
+<script type="text/babel" data-type="module" data-presets="env,react">
+/* Lanyard — React Bits component, adapted for CDN (esm.sh import map).
+   Requires assets/lanyard/card.glb + assets/lanyard/lanyard.png to render. */
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { createRoot } from 'react-dom/client';
+import { Canvas, extend, useFrame } from '@react-three/fiber';
+import { useGLTF, useTexture, Environment, Lightformer } from '@react-three/drei';
+import { BallCollider, CuboidCollider, Physics, RigidBody, useRopeJoint, useSphericalJoint } from '@react-three/rapier';
+import { MeshLineGeometry, MeshLineMaterial } from 'meshline';
+import * as THREE from 'three';
+
+extend({ MeshLineGeometry, MeshLineMaterial });
+
+const CARD_GLB = 'assets/lanyard/card.glb';
+const BAND_PNG = 'assets/lanyard/lanyard.png';
+const BLANK_PIXEL =
+  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==';
+const FRONT_UV_RECT = { x: 0, y: 0, w: 0.5, h: 0.755 };
+const BACK_UV_RECT = { x: 0.5, y: 0, w: 0.5, h: 0.757 };
+
+function Lanyard({ position = [0, 0, 30], gravity = [0, -40, 0], fov = 20, transparent = true,
+  frontImage = null, backImage = null, imageFit = 'cover', lanyardImage = null, lanyardWidth = 1 }) {
+  const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth < 768);
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  return (
+    <div className="lanyard-wrapper">
+      <Canvas
+        camera={{ position, fov }}
+        dpr={[1, isMobile ? 1.5 : 2]}
+        gl={{ alpha: transparent }}
+        onCreated={({ gl }) => gl.setClearColor(new THREE.Color(0x000000), transparent ? 0 : 1)}
+      >
+        <ambientLight intensity={Math.PI} />
+        <Physics gravity={gravity} timeStep={isMobile ? 1 / 30 : 1 / 60}>
+          <Band
+            isMobile={isMobile}
+            frontImage={frontImage}
+            backImage={backImage}
+            imageFit={imageFit}
+            lanyardImage={lanyardImage}
+            lanyardWidth={lanyardWidth}
+          />
+        </Physics>
+        <Environment blur={0.75}>
+          <Lightformer intensity={2} color="white" position={[0, -1, 5]} rotation={[0, 0, Math.PI / 3]} scale={[100, 0.1, 1]} />
+          <Lightformer intensity={3} color="white" position={[-1, -1, 1]} rotation={[0, 0, Math.PI / 3]} scale={[100, 0.1, 1]} />
+          <Lightformer intensity={3} color="white" position={[1, 1, 1]} rotation={[0, 0, Math.PI / 3]} scale={[100, 0.1, 1]} />
+          <Lightformer intensity={10} color="white" position={[-10, 0, 14]} rotation={[0, Math.PI / 2, Math.PI / 3]} scale={[100, 10, 1]} />
+        </Environment>
+      </Canvas>
+    </div>
+  );
+}
+
+function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false, frontImage = null, backImage = null,
+  imageFit = 'cover', lanyardImage = null, lanyardWidth = 1 }) {
+  const band = useRef(), fixed = useRef(), j1 = useRef(), j2 = useRef(), j3 = useRef(), card = useRef();
+  const vec = new THREE.Vector3(), ang = new THREE.Vector3(), rot = new THREE.Vector3(), dir = new THREE.Vector3();
+  const segmentProps = { type: 'dynamic', canSleep: true, colliders: false, angularDamping: 4, linearDamping: 4 };
+  const { nodes, materials } = useGLTF(CARD_GLB);
+  const texture = useTexture(lanyardImage || BAND_PNG);
+  const frontTex = useTexture(frontImage || BLANK_PIXEL);
+  const backTex = useTexture(backImage || BLANK_PIXEL);
+
+  const cardMap = useMemo(() => {
+    const baseMap = materials.base.map;
+    if (!frontImage && !backImage) return baseMap;
+    const baseImg = baseMap.image;
+    const W = baseImg.width, H = baseImg.height;
+    const canvas = document.createElement('canvas');
+    canvas.width = W; canvas.height = H;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return baseMap;
+    ctx.drawImage(baseImg, 0, 0, W, H);
+    const drawFitted = (img, rect) => {
+      const rx = rect.x * W, ry = rect.y * H, rw = rect.w * W, rh = rect.h * H;
+      const pick = imageFit === 'contain' ? Math.min : Math.max;
+      const scale = pick(rw / img.width, rh / img.height);
+      const dw = img.width * scale, dh = img.height * scale;
+      const dx = rx + (rw - dw) / 2, dy = ry + (rh - dh) / 2;
+      ctx.save();
+      ctx.beginPath();
+      ctx.rect(rx, ry, rw, rh);
+      ctx.clip();
+      ctx.drawImage(img, dx, dy, dw, dh);
+      ctx.restore();
+    };
+    if (frontImage && frontTex.image) drawFitted(frontTex.image, FRONT_UV_RECT);
+    if (backImage && backTex.image) drawFitted(backTex.image, BACK_UV_RECT);
+    const composite = new THREE.CanvasTexture(canvas);
+    composite.colorSpace = THREE.SRGBColorSpace;
+    composite.flipY = baseMap.flipY;
+    composite.anisotropy = 16;
+    composite.needsUpdate = true;
+    return composite;
+  }, [frontImage, backImage, imageFit, frontTex, backTex, materials.base.map]);
+
+  const [curve] = useState(
+    () => new THREE.CatmullRomCurve3([new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3()])
+  );
+  const [dragged, drag] = useState(false);
+  const [hovered, hover] = useState(false);
+
+  useRopeJoint(fixed, j1, [[0, 0, 0], [0, 0, 0], 1]);
+  useRopeJoint(j1, j2, [[0, 0, 0], [0, 0, 0], 1]);
+  useRopeJoint(j2, j3, [[0, 0, 0], [0, 0, 0], 1]);
+  useSphericalJoint(j3, card, [[0, 0, 0], [0, 1.5, 0]]);
+
+  useEffect(() => {
+    if (hovered) {
+      document.body.style.cursor = dragged ? 'grabbing' : 'grab';
+      return () => void (document.body.style.cursor = 'auto');
+    }
+  }, [hovered, dragged]);
+
+  useFrame((state, delta) => {
+    if (dragged) {
+      vec.set(state.pointer.x, state.pointer.y, 0.5).unproject(state.camera);
+      dir.copy(vec).sub(state.camera.position).normalize();
+      vec.add(dir.multiplyScalar(state.camera.position.length()));
+      [card, j1, j2, j3, fixed].forEach((ref) => ref.current?.wakeUp());
+      card.current?.setNextKinematicTranslation({ x: vec.x - dragged.x, y: vec.y - dragged.y, z: vec.z - dragged.z });
+    }
+    if (fixed.current) {
+      [j1, j2].forEach((ref) => {
+        if (!ref.current.lerped) ref.current.lerped = new THREE.Vector3().copy(ref.current.translation());
+        const clampedDistance = Math.max(0.1, Math.min(1, ref.current.lerped.distanceTo(ref.current.translation())));
+        ref.current.lerped.lerp(ref.current.translation(), delta * (minSpeed + clampedDistance * (maxSpeed - minSpeed)));
+      });
+      curve.points[0].copy(j3.current.translation());
+      curve.points[1].copy(j2.current.lerped);
+      curve.points[2].copy(j1.current.lerped);
+      curve.points[3].copy(fixed.current.translation());
+      band.current.geometry.setPoints(curve.getPoints(isMobile ? 16 : 32));
+      ang.copy(card.current.angvel());
+      rot.copy(card.current.rotation());
+      card.current.setAngvel({ x: ang.x, y: ang.y - rot.y * 0.25, z: ang.z });
+    }
+  });
+
+  curve.curveType = 'chordal';
+  texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+
+  return (
+    <>
+      <group position={[0, 4, 0]}>
+        <RigidBody ref={fixed} {...segmentProps} type="fixed" />
+        <RigidBody position={[0.5, 0, 0]} ref={j1} {...segmentProps}>
+          <BallCollider args={[0.1]} />
+        </RigidBody>
+        <RigidBody position={[1, 0, 0]} ref={j2} {...segmentProps}>
+          <BallCollider args={[0.1]} />
+        </RigidBody>
+        <RigidBody position={[1.5, 0, 0]} ref={j3} {...segmentProps}>
+          <BallCollider args={[0.1]} />
+        </RigidBody>
+        <RigidBody position={[2, 0, 0]} ref={card} {...segmentProps} type={dragged ? 'kinematicPosition' : 'dynamic'}>
+          <CuboidCollider args={[0.8, 1.125, 0.01]} />
+          <group
+            scale={2.25}
+            position={[0, -1.2, -0.05]}
+            onPointerOver={() => hover(true)}
+            onPointerOut={() => hover(false)}
+            onPointerUp={(e) => (e.target.releasePointerCapture(e.pointerId), drag(false))}
+            onPointerDown={(e) => (
+              e.target.setPointerCapture(e.pointerId),
+              drag(new THREE.Vector3().copy(e.point).sub(vec.copy(card.current.translation())))
+            )}
+          >
+            <mesh geometry={nodes.card.geometry}>
+              <meshPhysicalMaterial
+                map={cardMap}
+                map-anisotropy={16}
+                clearcoat={isMobile ? 0 : 1}
+                clearcoatRoughness={0.15}
+                roughness={0.9}
+                metalness={0.8}
+              />
+            </mesh>
+            <mesh geometry={nodes.clip.geometry} material={materials.metal} material-roughness={0.3} />
+            <mesh geometry={nodes.clamp.geometry} material={materials.metal} />
+          </group>
+        </RigidBody>
+      </group>
+      <mesh ref={band}>
+        <meshLineGeometry />
+        <meshLineMaterial
+          color="white"
+          depthTest={false}
+          resolution={isMobile ? [1000, 2000] : [1000, 1000]}
+          useMap
+          map={texture}
+          repeat={[-4, 1]}
+          lineWidth={lanyardWidth}
+        />
+      </mesh>
+    </>
+  );
+}
+
+class LanyardBoundary extends React.Component {
+  state = { failed: false };
+  static getDerivedStateFromError() { return { failed: true }; }
+  render() { return this.state.failed ? null : this.props.children; }
+}
+
+const stage = document.getElementById('lanyard-stage');
+if (stage && window.WebGL2RenderingContext) {
+  const mount = () => {
+    try {
+      createRoot(stage).render(
+        <LanyardBoundary>
+          <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} />
+        </LanyardBoundary>
+      );
+    } catch (err) {
+      console.warn('[lanyard] mount failed:', err);
+    }
+  };
+  if (location.protocol === 'file:') {
+    mount();
+  } else {
+    Promise.all([fetch(CARD_GLB, { method: 'HEAD' }), fetch(BAND_PNG, { method: 'HEAD' })])
+      .then(([a, b]) => {
+        if (a.ok && b.ok) mount();
+        else console.warn('[lanyard] missing assets — put card.glb + lanyard.png into assets/lanyard/ to activate.');
+      })
+      .catch(mount);
+  }
+}
+</script>
 </body>
 </html>
