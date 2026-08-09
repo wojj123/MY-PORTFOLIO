@@ -1,4 +1,4 @@
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+﻿const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 function debounce(fn, wait) {
   let timer;
@@ -354,10 +354,10 @@ const stackInfo = {
     link: 'https://en.cppreference.com/w/c',
     desc: 'A low-level systems language I use for socket programming, memory handling, and OS-level work. It powers the networking layer of Muay Type.',
     svg: `<svg viewBox="0 0 220 130" xmlns="http://www.w3.org/2000/svg">
-      <rect x="14" y="14" width="192" height="102" rx="14" fill="rgba(7,25,30,0.7)" stroke="rgba(20,0,255,0.35)" stroke-width="2"/>
+      <rect x="14" y="14" width="192" height="102" rx="14" fill="rgba(7,25,30,0.7)" stroke="rgba(45, 1, 240,0.35)" stroke-width="2"/>
       <circle cx="36" cy="36" r="5" fill="#ff5f56"/><circle cx="56" cy="36" r="5" fill="#ffbd2e"/><circle cx="76" cy="36" r="5" fill="#27c93f"/>
-      <text x="30" y="80" fill="#1400FF" font-family="monospace" font-size="17">printf("Hello!");</text>
-      <rect class="sv-cursor" x="190" y="68" width="9" height="16" fill="#1400FF"/>
+      <text x="30" y="80" fill="#2d01f0" font-family="monospace" font-size="17">printf("Hello!");</text>
+      <rect class="sv-cursor" x="190" y="68" width="9" height="16" fill="#2d01f0"/>
     </svg>`,
   },
   python: {
@@ -375,10 +375,10 @@ const stackInfo = {
     link: 'https://flask.palletsprojects.com',
     desc: 'A minimal Python web framework — Flask and Flask-SQLAlchemy drive the TSRO Gas Station backend, with Supabase as the database.',
     svg: `<svg viewBox="0 0 140 170" xmlns="http://www.w3.org/2000/svg">
-      <path class="sv-flask" d="M52 18 h36 v50 l32 58 q-3 18 -16 24 q-8 4 -34 4 q-26 0 -34 -4 q-13 -6 -16 -24 l32 -58 z" fill="rgba(20,0,255,0.12)" stroke="#1400FF" stroke-width="4" stroke-linejoin="round"/>
-      <line x1="70" y1="62" x2="70" y2="104" stroke="#0A00D6" stroke-width="3" stroke-linecap="round"/>
-      <circle class="sv-bubble" cx="64" cy="122" r="4.5" fill="#1400FF"/>
-      <circle class="sv-bubble b2" cx="77" cy="134" r="3.5" fill="#0A00D6"/>
+      <path class="sv-flask" d="M52 18 h36 v50 l32 58 q-3 18 -16 24 q-8 4 -34 4 q-26 0 -34 -4 q-13 -6 -16 -24 l32 -58 z" fill="rgba(45, 1, 240,0.12)" stroke="#2d01f0" stroke-width="4" stroke-linejoin="round"/>
+      <line x1="70" y1="62" x2="70" y2="104" stroke="#2601cc" stroke-width="3" stroke-linecap="round"/>
+      <circle class="sv-bubble" cx="64" cy="122" r="4.5" fill="#2d01f0"/>
+      <circle class="sv-bubble b2" cx="77" cy="134" r="3.5" fill="#2601cc"/>
     </svg>`,
   },
   sql: {
@@ -386,12 +386,12 @@ const stackInfo = {
     link: 'https://www.w3schools.com/sql',
     desc: 'Querying and structuring relational data — schema design, joins, and CRUD. I work with PostgreSQL through Supabase in my projects.',
     svg: `<svg viewBox="0 0 180 150" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="90" cy="30" rx="62" ry="17" fill="rgba(20,0,255,0.12)" stroke="#1400FF" stroke-width="3"/>
-      <path d="M28 30 v78 a62 17 0 0 0 124 0 V30" fill="rgba(20,0,255,0.06)" stroke="#1400FF" stroke-width="3"/>
-      <ellipse cx="90" cy="108" rx="62" ry="17" fill="rgba(20,0,255,0.12)" stroke="#1400FF" stroke-width="3"/>
-      <rect class="sv-row" x="42" y="56" width="96" height="10" rx="5" fill="#1400FF"/>
-      <rect class="sv-row r2" x="58" y="72" width="64" height="10" rx="5" fill="#0A00D6"/>
-      <rect class="sv-row r3" x="50" y="88" width="80" height="10" rx="5" fill="#0A00B8"/>
+      <ellipse cx="90" cy="30" rx="62" ry="17" fill="rgba(45, 1, 240,0.12)" stroke="#2d01f0" stroke-width="3"/>
+      <path d="M28 30 v78 a62 17 0 0 0 124 0 V30" fill="rgba(45, 1, 240,0.06)" stroke="#2d01f0" stroke-width="3"/>
+      <ellipse cx="90" cy="108" rx="62" ry="17" fill="rgba(45, 1, 240,0.12)" stroke="#2d01f0" stroke-width="3"/>
+      <rect class="sv-row" x="42" y="56" width="96" height="10" rx="5" fill="#2d01f0"/>
+      <rect class="sv-row r2" x="58" y="72" width="64" height="10" rx="5" fill="#2601cc"/>
+      <rect class="sv-row r3" x="50" y="88" width="80" height="10" rx="5" fill="#1b0190"/>
     </svg>`,
   },
   git: {
@@ -399,13 +399,13 @@ const stackInfo = {
     link: 'https://git-scm.com',
     desc: 'Version control for every project — branching, merging, and collaborating with teammates, including my Muay Type duo work.',
     svg: `<svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg">
-      <line class="sv-gitline" x1="30" y1="35" x2="92" y2="35" stroke="#1400FF" stroke-width="3.5"/>
-      <line class="sv-gitline l2" x1="92" y1="35" x2="92" y2="78" stroke="#0A00D6" stroke-width="3.5"/>
-      <line class="sv-gitline l3" x1="92" y1="78" x2="152" y2="78" stroke="#0A00B8" stroke-width="3.5"/>
-      <circle class="sv-commit" cx="30" cy="35" r="7" fill="#1400FF"/>
-      <circle class="sv-commit c2" cx="92" cy="35" r="7" fill="#1400FF"/>
-      <circle class="sv-commit c3" cx="92" cy="78" r="7" fill="#0A00D6"/>
-      <circle class="sv-commit c4" cx="152" cy="78" r="7" fill="#0A00B8"/>
+      <line class="sv-gitline" x1="30" y1="35" x2="92" y2="35" stroke="#2d01f0" stroke-width="3.5"/>
+      <line class="sv-gitline l2" x1="92" y1="35" x2="92" y2="78" stroke="#2601cc" stroke-width="3.5"/>
+      <line class="sv-gitline l3" x1="92" y1="78" x2="152" y2="78" stroke="#1b0190" stroke-width="3.5"/>
+      <circle class="sv-commit" cx="30" cy="35" r="7" fill="#2d01f0"/>
+      <circle class="sv-commit c2" cx="92" cy="35" r="7" fill="#2d01f0"/>
+      <circle class="sv-commit c3" cx="92" cy="78" r="7" fill="#2601cc"/>
+      <circle class="sv-commit c4" cx="152" cy="78" r="7" fill="#1b0190"/>
     </svg>`,
   },
   cpp: {
@@ -413,9 +413,9 @@ const stackInfo = {
     link: 'https://en.cppreference.com/w/cpp',
     desc: 'A performance-focused extension of C — object-oriented features with low-level control. A coursework staple.',
     svg: `<svg viewBox="0 0 210 120" xmlns="http://www.w3.org/2000/svg">
-      <text x="58" y="84" fill="#1400FF" font-family="monospace" font-size="66" font-weight="700" text-anchor="middle">C</text>
-      <g class="sv-plus"><line x1="122" y1="44" x2="122" y2="76" stroke="#0A00D6" stroke-width="8" stroke-linecap="round"/><line x1="106" y1="60" x2="138" y2="60" stroke="#0A00D6" stroke-width="8" stroke-linecap="round"/></g>
-      <g class="sv-plus p2"><line x1="158" y1="44" x2="158" y2="76" stroke="#0A00B8" stroke-width="8" stroke-linecap="round"/><line x1="142" y1="60" x2="174" y2="60" stroke="#0A00B8" stroke-width="8" stroke-linecap="round"/></g>
+      <text x="58" y="84" fill="#2d01f0" font-family="monospace" font-size="66" font-weight="700" text-anchor="middle">C</text>
+      <g class="sv-plus"><line x1="122" y1="44" x2="122" y2="76" stroke="#2601cc" stroke-width="8" stroke-linecap="round"/><line x1="106" y1="60" x2="138" y2="60" stroke="#2601cc" stroke-width="8" stroke-linecap="round"/></g>
+      <g class="sv-plus p2"><line x1="158" y1="44" x2="158" y2="76" stroke="#1b0190" stroke-width="8" stroke-linecap="round"/><line x1="142" y1="60" x2="174" y2="60" stroke="#1b0190" stroke-width="8" stroke-linecap="round"/></g>
     </svg>`,
   },
   java: {
@@ -423,9 +423,9 @@ const stackInfo = {
     link: 'https://www.java.com',
     desc: 'A classic object-oriented language with a huge standard library — used across my programming coursework and CSDC subjects.',
     svg: `<svg viewBox="0 0 180 150" xmlns="http://www.w3.org/2000/svg">
-      <path d="M42 52 h66 v10 a33 27 0 0 1 -66 0 z M108 52 h12 a10 12 0 0 1 0 24 h-12" fill="rgba(20,0,255,0.10)" stroke="#1400FF" stroke-width="3.5" stroke-linejoin="round"/>
-      <path class="sv-steam" d="M62 40 q6 -8 1 -15 q-5 -7 1 -13" fill="none" stroke="#0A00D6" stroke-width="3" stroke-linecap="round"/>
-      <path class="sv-steam s2" d="M84 44 q6 -8 1 -15 q-5 -7 1 -13" fill="none" stroke="#0A00B8" stroke-width="3" stroke-linecap="round"/>
+      <path d="M42 52 h66 v10 a33 27 0 0 1 -66 0 z M108 52 h12 a10 12 0 0 1 0 24 h-12" fill="rgba(45, 1, 240,0.10)" stroke="#2d01f0" stroke-width="3.5" stroke-linejoin="round"/>
+      <path class="sv-steam" d="M62 40 q6 -8 1 -15 q-5 -7 1 -13" fill="none" stroke="#2601cc" stroke-width="3" stroke-linecap="round"/>
+      <path class="sv-steam s2" d="M84 44 q6 -8 1 -15 q-5 -7 1 -13" fill="none" stroke="#1b0190" stroke-width="3" stroke-linecap="round"/>
     </svg>`,
   },
 };

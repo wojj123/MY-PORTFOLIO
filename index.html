@@ -189,7 +189,6 @@
 <script src="accordion-gallery.js"></script>
 <script src="gradient-waves.js"></script>
 <script src="script.js"></script>
-<div id="lens-stage" aria-hidden="true"></div>
 <script type="importmap">
 {
   "imports": {
@@ -198,17 +197,16 @@
     "react": "https://esm.sh/react@18.3.1",
     "react-dom": "https://esm.sh/react-dom@18.3.1",
     "react-dom/client": "https://esm.sh/react-dom@18.3.1/client",
-    "@react-three/fiber": "https://esm.sh/@react-three/fiber@8.17.10?deps=react@18.3.1,three@0.170.0",
-    "@react-three/drei": "https://esm.sh/@react-three/drei@9.114.3?deps=react@18.3.1,three@0.170.0",
-    "@react-three/rapier": "https://esm.sh/@react-three/rapier@1.5.0?deps=react@18.3.1,three@0.170.0",
-    "meshline": "https://esm.sh/meshline@3.3.0?deps=three@0.170.0",
-    "@dimforge/rapier3d-compat": "https://esm.sh/@dimforge/rapier3d-compat@0.14.0"
+    "@react-three/fiber": "https://esm.sh/@react-three/fiber@8.18.0?deps=react@18.3.1,three@0.170.0&target=es2020",
+    "@react-three/drei": "https://esm.sh/@react-three/drei@9.114.3?deps=react@18.3.1,three@0.170.0,@react-three/fiber@8.18.0&target=es2020",
+    "@react-three/rapier": "https://esm.sh/@react-three/rapier@1.5.0?deps=react@18.3.1,three@0.170.0,@react-three/fiber@8.18.0&target=es2020",
+    "meshline": "https://esm.sh/meshline@3.3.0?deps=three@0.170.0&target=es2020",
+    "@dimforge/rapier3d-compat": "https://esm.sh/@dimforge/rapier3d-compat@0.14.0&target=es2020"
   }
 }
 </script>
-<script type="module" src="fluid-lens.js"></script>
 <script src="https://unpkg.com/@babel/standalone@7/babel.min.js"></script>
-<script type="text/babel" data-type="module" data-presets="env,react">
+<script id="lanyard-source" type="text/plain">
 /* Lanyard — React Bits component, adapted for CDN (esm.sh import map).
    Requires assets/lanyard/card.glb + assets/lanyard/lanyard.png to render. */
 import React, { useEffect, useMemo, useRef, useState } from 'react';
@@ -243,6 +241,7 @@ function Lanyard({ position = [0, 0, 30], gravity = [0, -40, 0], fov = 20, trans
         dpr={[1, isMobile ? 1.5 : 2]}
         gl={{ alpha: transparent }}
         onCreated={({ gl }) => gl.setClearColor(new THREE.Color(0x000000), transparent ? 0 : 1)}
+        onError={(e) => console.warn('[lanyard] canvas error:', e.error)}
       >
         <ambientLight intensity={Math.PI} />
         <Physics gravity={gravity} timeStep={isMobile ? 1 / 30 : 1 / 60}>
@@ -415,6 +414,7 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false, frontImage = null
 class LanyardBoundary extends React.Component {
   state = { failed: false };
   static getDerivedStateFromError() { return { failed: true }; }
+  componentDidCatch(err) { console.warn('[lanyard] render error:', err); }
   render() { return this.state.failed ? null : this.props.children; }
 }
 
@@ -432,7 +432,7 @@ if (stage && window.WebGL2RenderingContext) {
     }
   };
   if (location.protocol === 'file:') {
-    mount();
+    console.warn('[lanyard] browsers block 3D asset loading on file:// — serve the folder over HTTP (e.g. `python -m http.server 8000`) and open http://localhost:8000.');
   } else {
     Promise.all([fetch(CARD_GLB, { method: 'HEAD' }), fetch(BAND_PNG, { method: 'HEAD' })])
       .then(([a, b]) => {
@@ -442,6 +442,21 @@ if (stage && window.WebGL2RenderingContext) {
       .catch(mount);
   }
 }
+</script>
+<script type="module">
+(async () => {
+  try {
+    const src = document.getElementById('lanyard-source').textContent;
+    const code = Babel.transform(src, {
+      presets: [['env', { modules: false }], 'react'],
+      sourceType: 'module'
+    }).code;
+    const url = URL.createObjectURL(new Blob([code], { type: 'text/javascript' }));
+    await import(url);
+  } catch (err) {
+    console.warn('[lanyard] failed to load:', err);
+  }
+})();
 </script>
 </body>
 </html>

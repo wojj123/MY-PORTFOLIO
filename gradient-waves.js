@@ -1,4 +1,4 @@
-// Gradient waves background — port of the React Bits "GradientWaves" component.
+﻿// Gradient waves background — port of the React Bits "GradientWaves" component.
 // Runs as a classic script: OGL is loaded via dynamic import() so the effect
 // also works when the page is opened directly from disk (file://). If WebGL2
 // is missing or the CDN is unreachable, the fallback .orbs background stays on.
@@ -142,8 +142,8 @@ void main() {
 
   const opts = {
     horizonColor: '#000000',
-    waveColor: '#0E3466',
-    crestColor: '#1400FF',
+    waveColor: '#14006c',
+    crestColor: '#2d01f0',
     speed: 0.4,
     amplitude: 2.5,
     waveScale: 0.6,
