@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="dark">
-<meta name="theme-color" content="#030309">
+<meta name="theme-color" content="#07191E">
 <title>Lolek portfolio</title>
 <meta name="description" content="Lolek — computer science student and programmer.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -65,7 +65,12 @@
             <div class="work-tags mono">C · TCP sockets · duo project · OS</div>
           </div>
           <p>A socket-based multiplayer typing game — type faster, deal more damage. I built the networking layer (<code>server.c</code> / <code>client.c</code>) while my partner handled game logic. WPM-based damage tiers, a live countdown timer, box-drawn ASCII UI panels.</p>
+          <div class="work-actions">
+            <a class="deck-btn" href="https://canva.link/eto3m1qg4e78ut9" target="_blank" rel="noopener">Open deck ↗</a>
+            <button class="deck-btn" type="button" data-deck="https://canva.link/eto3m1qg4e78ut9" data-deck-embed="https://www.canva.com/design/DAHJJ-y92KE/BigelVfcXJCnTM6K_c1ROQ/view?embed" data-deck-title="Muay Type — presentation preview">Preview deck</button>
+          </div>
         </div>
+        <a class="work-row-link" href="https://canva.link/eto3m1qg4e78ut9" target="_blank" rel="noopener" aria-label="Open the Muay Type presentation deck"></a>
       </article>
 
       <article class="work-row">
@@ -76,22 +81,28 @@
             <div class="work-tags mono">Flask · Supabase · Vue.js · Group project · CSDC105</div>
           </div>
           <p>A gas station management web app built for my CSDC105 course defense — Flask and Flask-SQLAlchemy on the backend, Supabase (Postgres) for data, Vue.js and Chart.js on the front end. Deployed on Vercel, currently in defense prep.</p>
+          <div class="work-actions">
+            <a class="deck-btn" href="https://canva.link/cxgx9apg2g8jkk4" target="_blank" rel="noopener">Open deck ↗</a>
+            <button class="deck-btn" type="button" data-deck="https://canva.link/cxgx9apg2g8jkk4" data-deck-embed="https://www.canva.com/design/DAHRzxh90CE/xrjaNjJOOY4m1RYYV3znPw/view?embed" data-deck-title="TSRO Gas Station — presentation preview">Preview deck</button>
+          </div>
         </div>
+        <a class="work-row-link" href="https://canva.link/cxgx9apg2g8jkk4" target="_blank" rel="noopener" aria-label="Open the TSRO Gas Station presentation deck"></a>
       </article>
     </div>
   </section>
 
   <section id="stack" class="section">
     <p class="eyebrow mono">stack</p>
-    <h2>Stack</h2>
+    <h2>TechStacks</h2>
+    <p class="stack-hint mono">click any stack to preview it</p>
     <ul class="stack-list mono">
-      <li>C</li>
-      <li>Python</li>
-      <li>Flask</li>
-      <li>SQL</li>
-      <li>Git</li>
-      <li>C++</li>
-      <li>Java</li>
+      <li><button class="stack-pill" type="button" data-stack="c">C</button></li>
+      <li><button class="stack-pill" type="button" data-stack="python">Python</button></li>
+      <li><button class="stack-pill" type="button" data-stack="flask">Flask</button></li>
+      <li><button class="stack-pill" type="button" data-stack="sql">SQL</button></li>
+      <li><button class="stack-pill" type="button" data-stack="git">Git</button></li>
+      <li><button class="stack-pill" type="button" data-stack="cpp">C++</button></li>
+      <li><button class="stack-pill" type="button" data-stack="java">Java</button></li>
     </ul>
   </section>
 
@@ -107,11 +118,47 @@
 </main>
 
 <footer class="footer mono">
-  <span>lolek — updated 2026</span>
-  <span>EOF</span>
+  <span>lolek's first project</span>
 </footer>
 
 <button class="to-top mono" id="toTop" aria-label="Back to top">↑</button>
+
+<div class="deck-modal" id="deckModal" hidden>
+  <div class="deck-modal-backdrop" data-deck-close></div>
+  <div class="deck-modal-panel" role="dialog" aria-modal="true" aria-labelledby="deckTitle">
+    <div class="deck-modal-head">
+      <h3 id="deckTitle">Muay Type — presentation preview</h3>
+      <div class="deck-modal-actions">
+        <a class="deck-btn" id="deckOpenBtn" href="https://canva.link/eto3m1qg4e78ut9" target="_blank" rel="noopener">Open in Canva ↗</a>
+        <button class="deck-close" id="deckClose" type="button" data-deck-close aria-label="Close preview">✕</button>
+      </div>
+    </div>
+    <div class="deck-modal-frame">
+      <div class="deck-loading" id="deckLoading">Loading preview…</div>
+      <iframe id="deckFrame" title="Muay Type presentation preview" allowfullscreen></iframe>
+      <div class="deck-fallback" id="deckFallback" hidden>
+        <p>Canva blocked the live preview in this browser. Open it directly in Canva to view the slides.</p>
+        <a class="deck-btn" id="deckFallbackBtn" href="https://canva.link/eto3m1qg4e78ut9" target="_blank" rel="noopener">Open presentation in Canva ↗</a>
+      </div>
+    </div>
+    <p class="deck-modal-hint mono">If the preview stays blank, Canva is blocking the embed — use “Open in Canva” to view the deck.</p>
+  </div>
+</div>
+
+<div class="deck-modal" id="stackModal" hidden>
+  <div class="deck-modal-backdrop" data-stack-close></div>
+  <div class="deck-modal-panel stack-panel">
+    <div class="deck-modal-head">
+      <h3 id="stackTitle"></h3>
+      <div class="deck-modal-actions">
+        <a class="deck-btn" id="stackLink" href="#" target="_blank" rel="noopener">Official site ↗</a>
+        <button class="deck-close" type="button" data-stack-close aria-label="Close preview">✕</button>
+      </div>
+    </div>
+    <div class="stack-preview" id="stackPreview" aria-hidden="true"></div>
+    <p class="stack-desc" id="stackDesc"></p>
+  </div>
+</div>
 
 <script src="script.js"></script>
 </body>
